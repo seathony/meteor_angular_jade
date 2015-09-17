@@ -1,1 +1,5 @@
-p 1 + 2 = {{2+2}}
+div(ng-controller='PartiesListCtrl')
+   ul
+     li(ng-repeat='party in parties')
+       | {{party.name}}
+       p {{party.description}}
