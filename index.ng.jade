@@ -1,5 +1,12 @@
 div(ng-controller='PartiesListCtrl')
+  form
+    label Name 
+    input(ng-model="newParty.name")
+    label Description 
+    input(ng-model="newParty.description")
+    button(ng-click="parties.push(newParty); newParty='';") Add 
    ul
      li(ng-repeat='party in parties')
        | {{party.name}}
        p {{party.description}}
+       button(ng-click="remove(party)") X

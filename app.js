@@ -6,7 +6,11 @@ if (Meteor.isClient) {
   angular.module('simple-todos-angular').controller('PartiesListCtrl', ['$scope', '$meteor',
     function ($scope, $meteor) {
 
-    $scope.parties = $meteor.collection(Parties);
+    $scope.parties = $meteor.collection(Parties, false);
+
+    $scope.remove = function(party){
+      $scope.parties.remove(party);
+    };
 
   }]);
 }
