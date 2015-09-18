@@ -12,3 +12,4 @@ stylus
 angular
 angular:angular-material
 civilframe:angular-jade
+angularui:angular-ui-router
