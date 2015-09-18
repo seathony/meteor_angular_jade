@@ -1,4 +1,4 @@
-div(ng-controller='TasksListCtrl')
+div
   form
     label Task
     input(ng-model='newTask.name')
@@ -8,6 +8,6 @@ div(ng-controller='TasksListCtrl')
     button(ng-click='removeAll()') Remove All
   ul
     li(ng-repeat='task in tasks')
-      | {{task.name}}
+      a(href='/tasks/{{task._id}}') {{task.name}}
       p {{task.description}}
       button(ng-click='remove(task)') X

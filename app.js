@@ -1,4 +1,4 @@
-Parties = new Mongo.Collection("parties");
+Tasks = new Mongo.Collection("tasks");
 
 if (Meteor.isClient) {
   angular.module('simple-todos-angular', ['angular-meteor', 'ui.router']);
@@ -9,53 +9,53 @@ if (Meteor.isClient) {
      $locationProvider.html5Mode(true);
 
      $stateProvider
-       .state('parties', {
-         url: '/parties',
-         templateUrl: 'parties-list.html',
-         controller: 'PartiesListCtrl'
+       .state('tasks', {
+         url: '/tasks',
+         templateUrl: 'tasks-list.html',
+         controller: 'TasksListCtrl'
        })
-       .state('partyDetails', {
-         url: '/parties/:partyId',
-         templateUrl: 'party-details.html',
-         controller: 'PartyDetailsCtrl'
+       .state('taskDetails', {
+         url: '/tasks/:taskId',
+         templateUrl: 'task-details.html',
+         controller: 'TaskDetailsCtrl'
        });
 
-     $urlRouterProvider.otherwise("/parties");
+     $urlRouterProvider.otherwise("/tasks");
    }]);
 
-    angular.module('simple-todos-angular').controller('PartiesListCtrl', ['$scope', '$meteor',
+    angular.module('simple-todos-angular').controller('TasksListCtrl', ['$scope', '$meteor',
     function ($scope, $meteor) {
 
-    $scope.parties = $meteor.collection(Parties, false);
+    $scope.tasks = $meteor.collection(Tasks, false);
 
-    $scope.remove = function(party){
-      $scope.parties.remove(party);
+    $scope.remove = function(task){
+      $scope.tasks.remove(task);
     };
 
     $scope.removeAll= function(){
-      $scope.parties.remove();
+      $scope.tasks.remove();
     };
   }]);
 
-  angular.module("simple-todos-angular").controller("PartyDetailsCtrl", ['$scope', '$stateParams',
+  angular.module("simple-todos-angular").controller("TaskDetailsCtrl", ['$scope', '$stateParams',
    function($scope, $stateParams){
-     $scope.partyId = $stateParams.partyId;
+     $scope.taskId = $stateParams.taskId;
    }]);
 }
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    if (Parties.find().count() === 0) {
-      var parties = [
-        {'name': 'Dubstep-Free Zone',
-          'description': 'Fast just got faster with Nexus S.'},
-        {'name': 'All dubstep all the time',
-          'description': 'Get it on!'},
-        {'name': 'Savage lounging',
-          'description': 'Leisure suit required. And only fiercest manners.'}
+    if (Tasks.find().count() === 0) {
+      var tasks = [
+        {'name': 'Laundry',
+          'description': 'Pickup at northwest street.'},
+        {'name': 'Go to market',
+          'description': 'make sure to pickup eggs!'},
+        {'name': 'Relax',
+          'description': 'Read the well-grounded rubyist.'}
       ];
-      for (var i = 0; i < parties.length; i++)
-        Parties.insert(parties[i]);
+      for (var i = 0; i < Tasks.length; i++)
+        Tasks.insert(tasks[i]);
     }
   });
 }
