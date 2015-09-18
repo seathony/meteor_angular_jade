@@ -1,2 +1,7 @@
-body(ng-app="simple-todos-angular")
-  div(ng-include="'index.html'")
+head
+   base(href='/')
+ body
+   div(ng-app='simple-todos-angular')
+     h1
+       a(href='/parties') Home
+     div(ui-view='')

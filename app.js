@@ -1,9 +1,29 @@
 Parties = new Mongo.Collection("parties");
 
 if (Meteor.isClient) {
-  angular.module('simple-todos-angular', ['angular-meteor']);
+  angular.module('simple-todos-angular', ['angular-meteor', 'ui.router']);
 
-  angular.module('simple-todos-angular').controller('PartiesListCtrl', ['$scope', '$meteor',
+  angular.module('simple-todos-angular').config(['$urlRouterProvider', '$stateProvider', '$locationProvider',
+   function($urlRouterProvider, $stateProvider, $locationProvider){
+
+     $locationProvider.html5Mode(true);
+
+     $stateProvider
+       .state('parties', {
+         url: '/parties',
+         templateUrl: 'parties-list.html',
+         controller: 'PartiesListCtrl'
+       })
+       .state('partyDetails', {
+         url: '/parties/:partyId',
+         templateUrl: 'party-details.html',
+         controller: 'PartyDetailsCtrl'
+       });
+
+     $urlRouterProvider.otherwise("/parties");
+   }]);
+
+    angular.module('simple-todos-angular').controller('PartiesListCtrl', ['$scope', '$meteor',
     function ($scope, $meteor) {
 
     $scope.parties = $meteor.collection(Parties, false);
@@ -16,6 +36,11 @@ if (Meteor.isClient) {
       $scope.parties.remove();
     };
   }]);
+
+  angular.module("simple-todos-angular").controller("PartyDetailsCtrl", ['$scope', '$stateParams',
+   function($scope, $stateParams){
+     $scope.partyId = $stateParams.partyId;
+   }]);
 }
 
 if (Meteor.isServer) {
