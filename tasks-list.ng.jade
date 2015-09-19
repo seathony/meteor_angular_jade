@@ -5,10 +5,10 @@ div
     label Description
     input(ng-model='newTask.description')
     button(ng-click="tasks.save(newTask); newTask='';") Add
-    button(ng-click='removeAll()') Remove All
+    button(ng-click='removeChecked($index)') Remove Completed
   ul(ng-repeat='task in tasks')
     li(ng-class="{'checked': task.checked}")
       a.text(href='/tasks/{{task._id}}') {{task.name}}
-      input.toggle-checked(type="checkbox", ng-model="task.checked")
+      input.toggle-checked(type="checkbox", ng-model="task.checked", ng-click="checkedIndex(task)")
       p {{task.description}}
-      button(ng-click='remove(task)') X
+      button(ng-click='remove(task)') Give UP
