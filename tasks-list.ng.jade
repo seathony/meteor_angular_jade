@@ -6,8 +6,9 @@ div
     input(ng-model='newTask.description')
     button(ng-click="tasks.save(newTask); newTask='';") Add
     button(ng-click='removeAll()') Remove All
-  ul
-    li(ng-repeat='task in tasks')
-      a(href='/tasks/{{task._id}}') {{task.name}}
+  ul(ng-repeat='task in tasks')
+    li(ng-class="{'checked': task.checked}")
+      a.text(href='/tasks/{{task._id}}') {{task.name}}
+      input.toggle-checked(type="checkbox", ng-model="task.checked")
       p {{task.description}}
       button(ng-click='remove(task)') X
