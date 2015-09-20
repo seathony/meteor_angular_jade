@@ -1,5 +1,5 @@
-angular.module('simple-todos-angular').controller('TasksListCtrl', ['$scope', '$meteor',
-function ($scope, $meteor) {
+angular.module('simple-todos-angular').controller('TasksListCtrl', ['$scope', '$meteor', '$mdDialog',
+function ($scope, $meteor, $mdDialog) {
 
 $scope.tasks = $meteor.collection(Tasks);
 
@@ -36,4 +36,22 @@ $scope.checkedIndex = function (task) {
       });
         $scope.chckedIndexs = [];
  };
+
+ $scope.status = '  ';
+
+ $scope.showConfirm = function(ev) {
+  // Appending dialog to document.body to cover sidenav in docs app
+  var confirm = $mdDialog.confirm()
+        .title('Would you like to delete your debt?')
+        .content('All of the banks have agreed to <span class="debt-be-gone">forgive</span> you your debts.')
+        .ariaLabel('Lucky day')
+        .targetEvent(ev)
+        .ok('Please do it!')
+        .cancel('Sounds like a scam');
+  $mdDialog.show(confirm).then(function() {
+    $scope.status = 'You decided to get rid of your debt.';
+  }, function() {
+    $scope.status = 'You decided to keep your debt.';
+  });
+};
 }])

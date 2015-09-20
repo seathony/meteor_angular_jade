@@ -9,7 +9,7 @@ md-content(layout-padding='', style='height: 600px;padding: 24px;')
   md-button.md-raised(ng-click='removeChecked($index)') Remove Completed
   md-list-item(ng-repeat='task in tasks')
     li(ng-class="{'checked': task.checked}")
-      a.text(href='/tasks/{{task._id}}') {{task.name}}
+      md-button.md-primary.md-raised.text(flex='50', ng-click="showConfirm($event)") {{task.name}}
       md-checkbox.md-secondary(type="checkbox", ng-model="task.checked", ng-click="checkedIndex(task)", aria-label='Checkbox')
       p {{task.description}}
       button(ng-click='remove(task)') Give UP
