@@ -1,7 +1,9 @@
 head
-   base(href='/')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  base(href='/')
+  link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')  
  body
    div(ng-app='simple-todos-angular')
      h1
-       a(href='/tasks') Home
+       a.md-title(href='/tasks') Home
      div(ui-view='')

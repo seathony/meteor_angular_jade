@@ -4,7 +4,7 @@ div
     input(ng-model='newTask.name')
     label Description
     input(ng-model='newTask.description')
-    button(ng-click="tasks.save(newTask); newTask='';") Add
+    button.md-button(ng-click="tasks.save(newTask); newTask='';") Add
     button(ng-click='removeChecked($index)') Remove Completed
   ul(ng-repeat='task in tasks')
     li(ng-class="{'checked': task.checked}")

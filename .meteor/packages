@@ -10,6 +10,7 @@ insecure
 mquandalle:jade
 stylus
 angular
-angular:angular-material
 civilframe:angular-jade
 angularui:angular-ui-router
+angular:angular-material
+planettraining:material-design-icons
