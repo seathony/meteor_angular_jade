@@ -42,12 +42,12 @@ $scope.checkedIndex = function (task) {
  $scope.showConfirm = function(ev) {
   // Appending dialog to document.body to cover sidenav in docs app
   var confirm = $mdDialog.confirm()
-        .title('Would you like to delete your debt?')
-        .content('All of the banks have agreed to <span class="debt-be-gone">forgive</span> you your debts.')
+        .title('Details')
+        .content('content of details goes here')
         .ariaLabel('Lucky day')
         .targetEvent(ev)
         .ok('Please do it!')
-        .cancel('Sounds like a scam');
+        .cancel('Ehh I\'m a chicken');
   $mdDialog.show(confirm).then(function() {
     $scope.status = 'You decided to get rid of your debt.';
   }, function() {
