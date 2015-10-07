@@ -4,6 +4,8 @@ head
   link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')  
  body
    div(ng-app='simple-todos-angular')
-     h1
-       md-title(href='/tasks') Home
-     div(ui-view='')
+     md-toolbar
+       h1
+         md-title(href='/tasks') ToDO
+     md-content(flex="")
+       div(ui-view='')
